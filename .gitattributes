@@ -1,0 +1,4 @@
+.vscode/* linguist-vendored=true
+*.h linguist-language=C
+*.c linguist-language=C
+*.inl linguist-language=C
