@@ -7,8 +7,6 @@ SRC:=src
 SOURCES:=$(wildcard $(SRC)/*.c)
 OBJS:=$(patsubst $(SRC)/%.c, $(BIN)/%.o, $(SOURCES))
 
-#LIBS:=-lShell32
-
 all: $(NAME)
 
 release: CFLAGS=-Wall -O2 -DNDEBUG -std=c99
@@ -19,7 +17,7 @@ clean:
 	@del /S /Q .\$(BIN)\*
 
 $(NAME): $(BIN) $(OBJS)
-	$(CC) -g $(OBJS) -o $(BIN)/$@.exe -Wl,/SUBSYSTEM:CONSOLE $(LIBS)
+	$(CC) -g $(OBJS) -o $(BIN)/$@.exe $(LIBS)
 
 $(BIN)/%.o: $(SRC)/%.c
 	$(CC) -c $(CFLAGS) $< -o $@
