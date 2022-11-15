@@ -17,6 +17,7 @@ clean:
 	@del /S /Q .\$(BIN)\*
 
 $(NAME): $(BIN) $(OBJS)
+	@xcopy /Y /Q ".\scripts" ".\$(BIN)\scripts\" > nul
 	$(CC) -g $(OBJS) -o $(BIN)/$@.exe $(LIBS)
 
 $(BIN)/%.o: $(SRC)/%.c
