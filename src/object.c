@@ -19,6 +19,15 @@ static Obj *allocateObject(size_t size, ObjType type)
     return object;
 }
 
+ObjFunction *newFunction()
+{
+    ObjFunction *function = ALLOCATE_OBJ(ObjFunction, OBJ_FUNCTION);
+    function->arity = 0;
+    function->name = NULL;
+    initChunk(&function->chunk);
+    return function;
+}
+
 static ObjString *allocateString(char *chars, int length, uint32_t hash)
 {
     ObjString *string = ALLOCATE_OBJ(ObjString, OBJ_STRING);
@@ -62,6 +71,11 @@ ObjString *copyString(const char *chars, int length)
     memcpy(heapChars, chars, length);
     heapChars[length] = '\0';
     return allocateString(heapChars, length, hash);
+}
+
+static void printFunction(ObjFunction *function)
+{
+    printf("<fn %s>", function->name->chars);
 }
 
 void printObject(Value value)
