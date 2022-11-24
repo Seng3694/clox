@@ -1,26 +1,49 @@
 
 fun createVector(x, y) {
-    fun getter(field) {
-        if (field == "x")
-            return x;
-        else 
-            return y;
+    fun vector(method) {
+        fun getter(field) {
+            if (field == "x") {
+                return x;
+            } else {
+                return y;
+            }
+        }
+        fun setter(field, value) {
+            if(field == "x") {
+                x = value;
+            }
+            else {
+                y = value;
+            }
+        }
+        fun printer() {
+            print x;
+            print y;
+        }
+        if (method == "get") {
+            return getter;
+        } 
+        if (method == "set") {
+            return setter;
+        }
+        if (method == "print") {
+            return printer;
+        }
     }
     
-    return getter;
+    return vector;
 }
 
 fun addVectors(vec1, vec2) {
     return createVector(
-        vec1("x") + vec2("x"),
-        vec1("y") + vec2("y"));
-}
-
-fun printVector(vec) {
-    print vec("x");
-    print vec("y");
+        vec1("get")("x") + vec2("get")("x"),
+        vec1("get")("y") + vec2("get")("y"));
 }
 
 var vec1 = createVector(2, 3);
+vec1("set")("y", 20);
+
 var vec2 = createVector(7, -5);
-printVector(addVectors(vec1, vec2));
+
+var result = addVectors(vec1, vec2);
+result("print")();
