@@ -1,0 +1,26 @@
+
+fun createVector(x, y) {
+    fun getter(field) {
+        if (field == "x")
+            return x;
+        else 
+            return y;
+    }
+    
+    return getter;
+}
+
+fun addVectors(vec1, vec2) {
+    return createVector(
+        vec1("x") + vec2("x"),
+        vec1("y") + vec2("y"));
+}
+
+fun printVector(vec) {
+    print vec("x");
+    print vec("y");
+}
+
+var vec1 = createVector(2, 3);
+var vec2 = createVector(7, -5);
+printVector(addVectors(vec1, vec2));
