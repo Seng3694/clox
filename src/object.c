@@ -16,6 +16,7 @@ static Obj *allocateObject(size_t size, ObjType type)
     object->type = type;
     object->next = vm.objects;
     vm.objects = object;
+    DEBUG_LOG("%p allocate %zu for %d\n", (void *)object, size, type);
     return object;
 }
 
