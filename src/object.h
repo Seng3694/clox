@@ -85,6 +85,7 @@ typedef struct
     ObjString *name;
 } ObjClass;
 
+ObjClass *newClass(ObjString *name);
 ObjClosure *newClosure(ObjFunction *function);
 ObjFunction *newFunction();
 ObjNative *newNative(NativeFn function);

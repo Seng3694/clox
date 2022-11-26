@@ -10,7 +10,7 @@
             "name": "Launch",
             "program": "${workspaceFolder}/bin/clox.exe",
             "args": [
-                "${workspaceFolder}/bin/scripts/test_closures.lox"
+                "${workspaceFolder}/bin/scripts/test_classes.lox"
             ],
             "cwd": "${workspaceFolder}/bin"
         }
