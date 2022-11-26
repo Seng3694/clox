@@ -1,4 +1,4 @@
 class MyClass {}
 
 print MyClass;
-print "Hello";
+print MyClass();
