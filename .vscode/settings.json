@@ -1,6 +1,10 @@
 {
     "files.associations": {
+        "*.fsh": "glsl",
+        "*.rockspec": "lua",
         "*.h": "c",
-        "*.c": "c"
+        "*.c": "c",
+        "type_traits": "c",
+        "xtr1common": "c"
     }
 }
