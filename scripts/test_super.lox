@@ -1,0 +1,29 @@
+
+class Foo {
+    init(value) {
+        this.setA(value);
+    }
+
+    setA(value) {
+        this.a = value;
+    }
+    getA() {
+        return this.a;
+    }
+
+    incA() {
+        this.a = this.a + 1;
+    }
+}
+
+class Bar < Foo {
+    incA() {
+        print "call to super incA";
+        super.incA();
+    }
+}
+
+var b = Bar(20);
+b.setA(10);
+b.incA();
+print b.getA();

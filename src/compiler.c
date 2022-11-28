@@ -681,6 +681,7 @@ static void classDeclaration()
 
         namedVariable(className, false);
         emitByte(OP_INHERIT);
+        classCompiler.hasSuperclass = true;
     }
 
     namedVariable(className, false);
