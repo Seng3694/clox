@@ -429,11 +429,23 @@ static InterpretResult run()
             push(value);
             break;
         }
-        case OP_EQUAL:
+        case OP_GET_SUPER: {
+            ObjString *name = READ_STRING();
+            ObjClass *superclass = AS_CLASS(pop());
+
+            if (!bindMethod(superclass, name))
+            {
+                return INTERPRET_RUNTIME_ERROR;
+            }
+
+            break;
+        }
+        case OP_EQUAL: {
             Value b = pop();
             Value a = pop();
             push(BOOL_VAL(valuesEqual(a, b)));
             break;
+        }
         case OP_GET_UPVALUE: {
             uint8_t slot = READ_BYTE();
             push(*frame->closure->upvalues[slot]->location);
@@ -517,6 +529,17 @@ static InterpretResult run()
             ObjString *method = READ_STRING();
             int argCount = READ_BYTE();
             if (!invoke(method, argCount))
+            {
+                return INTERPRET_RUNTIME_ERROR;
+            }
+            frame = &vm.frames[vm.frameCount - 1];
+            break;
+        }
+        case OP_SUPER_INVOKE: {
+            ObjString *method = READ_STRING();
+            int argCount = READ_BYTE();
+            ObjClass *superclass = AS_CLASS(pop());
+            if (!invokeFromClass(superclass, method, argCount))
             {
                 return INTERPRET_RUNTIME_ERROR;
             }
